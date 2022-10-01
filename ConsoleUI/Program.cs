@@ -32,18 +32,34 @@ namespace ConsoleUI
             */
 
             // Create a list of Vehicle called vehicles
-
+            var vehicles = new List<Vehicle>(); //this line of code simply states that our new list will be called 'vehicles' and its list will consist of objects defined by the base class we named, 'Vehicle'.
             /*
              * Create 4 instances: 1 Car, 1 Motorcycle, and then 2 instances of type Vehicle (use explicit typing) but use constuctors from derived classes
              * - new it up as one of each derived class
              * Set the properties with object initializer syntax
              */
-
-            /*
-             * Add the 4 vehicles to the list
-             * Using a foreach loop iterate over each of the properties
+            Vehicle E500 = new Electricscooter() { HasTrunk = false, Make = "Unagi"}; //properties Model, Year, and Mileage all revert to the default values expressed in vehicle for this one.
+            var focus = new Car() { HasTrunk = true, Make = "Ford", Model = "Focus", Year = 2013, Mileage = 1200.22m, }; //HasTrunk never gets printed to the console, because it isn't expressed in the Vehicle
+            var motorcycle = new Motorcycle() { HasSideCart = true, Make = "Harley Davidson", Model = "Chopper", Year = 1985 };//class as a property. The same goes for 'HasSideCart'.
+            Vehicle hatchback = new Car() { HasTrunk = true, Make = "Honda", Model = "HRV", Year = 2021 };//Tried making 'HasTrunk' printable to the concole, by writing it into the scope of
+            Vehicle sportutilityvehicle = new Car() { HasTrunk = true, Make = "Hummer", Model = "H3", Year = 2012 };//the Vehicle class, so that it could be implemented into the 'foreach'
+            /* //function, but it didn't work. Perhaps because when trying to express 'HasTrunk' as a boolean property within the class, the '{get; set;}' aspect doesn't register for a boolean
+             * Add the 4 vehicles to the list //property. I was able to write it out as a bool property within the Vehicle class, but could only set it to true false -- not as a variable
+             * Using a foreach loop iterate over each of the properties //which could be used to store information of newly constructed objects (such as the vehicles down below).
              */
-
+            vehicles.Add(focus);
+            vehicles.Add(E500);
+            vehicles.Add(motorcycle);
+            vehicles.Add(sportutilityvehicle);
+            vehicles.Add(hatchback); //these will all print to the console in the order for which they are written here; the chronological order for which they are being added to the vehicles list up above.
+            //despite being instantiated in a different order, or being crafted as objects.
+            foreach (var vehicle in vehicles)
+            {
+                Console.WriteLine($"Make {vehicle.Make}. Model {vehicle.Model}. Year {vehicle.Year}. Mileage is estimated at around {vehicle.Mileage} miles currently. Does it have a trunk? {vehicle.HasTrunk}.");
+                Console.WriteLine();
+                vehicle.DriveAbstract();
+                Console.WriteLine();
+            } //mileage defaults to whatever was written in for the base class, as it wasn't specified for all derived classes.
             // Call each of the drive methods for one car and one motorcycle
 
             #endregion            
