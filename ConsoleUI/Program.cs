@@ -55,10 +55,15 @@ namespace ConsoleUI
             //despite being instantiated in a different order, or being crafted as objects.
             foreach (var vehicle in vehicles)
             {
+                if (vehicle is Motorcycle)
+                {
+                    var m = (Motorcycle)vehicle; //this was an attempt to have the motorcycle class print its 'HasSideCar' feature to the console, but remains unfinished -- found another way to do it.
+
+                }
                 Console.WriteLine($"Make {vehicle.Make}. Model {vehicle.Model}. Year {vehicle.Year}. Mileage is estimated at around {vehicle.Mileage} miles currently. Does it have a trunk? {vehicle.HasTrunk}.");
-                Console.WriteLine();
-                vehicle.DriveAbstract();
-                Console.WriteLine();
+                Console.WriteLine(); //the 'HasSideCart' property for the motorcycle was able to print ot the console without it being called for by being added to the 'vehicle' list -- efficient way to 
+                vehicle.DriveAbstract(); //display specific derived class only type properties to the console. The applies to the 'HasManualBrake' from the Electricscooter class. Otherwise, I was debating having to
+                Console.WriteLine(); //create newly defined lists, in addiiton to the 'vehicles' list, that would only contain those derived classes in them, and making another 'foreach' function, which would be super inefficient here.
             } //mileage defaults to whatever was written in for the base class, as it wasn't specified for all derived classes.
             // Call each of the drive methods for one car and one motorcycle
 
